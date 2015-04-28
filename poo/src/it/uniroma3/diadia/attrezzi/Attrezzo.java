@@ -8,9 +8,9 @@ import it.uniroma3.diadia.ambienti.Stanza;
  * del labirinto.
  * Ogni attrezzo ha un nome ed un peso.
  *
- * @author  Paolo Merialdo (con delle modifiche apportate da Riccardo Linares e la collaborazione di Mauro Iemboli)
+ * @author  Paolo Merialdo (con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
  * @see Stanza
- * @version 0.2
+ * @version 0.3
  *
  */
 

@@ -3,6 +3,14 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
+/**
+ * Questa classe modella il comando posa
+ * che permette di posare un attrezzo all'interno della stanza corrente.
+ *
+ * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
+ * @version 0.3
+ * @see Comando, Partita
+ */
 public class ComandoPosa implements Comando{
 
 	private String nomeAttrezzo;

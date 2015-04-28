@@ -18,10 +18,18 @@ public class Borsa {
 	private int numeroAttrezzi;
 	private int pesoMax;
 
+	/**
+	 * La borsa del giocatore con peso di default.
+	 */
 	public Borsa() {
 		this(DEFAULT_PESO_MAX_BORSA);
 	}
 
+	/**
+	 * La borsa del giocatore
+	 * @param pesoMax
+	 * 		il peso massimo della borsa del giocatore
+	 */
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
 		this.attrezzi = new Attrezzo[10]; // speriamo che bastino...

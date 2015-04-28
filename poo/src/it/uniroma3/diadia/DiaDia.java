@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 /**
  *  Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
- *  Per giocare crea un'istanza di questa classe e invoca il letodo gioca
+ *  Per giocare crea un'istanza di questa classe e invoca il metodo gioca
  *
  *  Questa e' la classe principale crea e istanzia tutte le altre
  *
- * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e la collaborazione di Mauro Iemboli)
- * @version 0.2
+ * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
+ * @version 0.3
  */
 
 public class DiaDia {

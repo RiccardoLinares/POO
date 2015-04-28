@@ -7,9 +7,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * Una stanza e' un luogo fisico nel gioco.
  * E' collegata ad altre stanze attraverso delle uscite.
  * Ogni uscita e' associata ad una direzione.
- * @author Paolo Merialdo (a partire da un'idea di Michael Kolling e David J. Barnes, con delle modifiche apportate da Riccardo Linares  e la collaborazione di Mauro Iemboli)
+ * @author Paolo Merialdo (a partire da un'idea di Michael Kolling e David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
  * @see Attrezzo
- * @version 0.2
+ * @version 0.3
 */
 
 
@@ -210,18 +210,36 @@ public class Stanza {
 	    return direzioni;
     }
 
+	/**
+	 * Restituisce il numero delle stanze adiacenti
+	 * @return int numeroStanzeAdiacenti, il numero delle stanze adiacenti
+	 */
 	public int getNumeroStanzeAdiacenti() {
 		return numeroStanzeAdiacenti;
 	}
 
+	/**
+	 * Modifica il numero delle stanze adiacenti
+	 * @param numeroStanzeAdiacenti
+	 * 			il numero delle stanze adiacenti.
+	 */
 	public void setNumeroStanzeAdiacenti(int numeroStanzeAdiacenti) {
 		this.numeroStanzeAdiacenti = numeroStanzeAdiacenti;
 	}
 
+	/**
+	 * Restituisce un array contenente le stanze adiacenti
+	 * @return Stanza[] stanzeAdiacenti, le stanze adiacenti.
+	 */
 	public Stanza[] getStanzeAdiacenti() {
 		return stanzeAdiacenti;
 	}
 
+	/**
+	 * Modifica l'array delle stanze adiacenti
+	 * @param stanzeAdiacenti
+	 * 		le stanze adiacenti.
+	 */
 	public void setStanzeAdiacenti(Stanza[] stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
 	}

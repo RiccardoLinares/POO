@@ -2,6 +2,14 @@ package it.uniroma3.diadia.comandi;
 
 import java.util.Scanner;
 
+/**
+ * Questa classe modella una fabbrica di comandi semplice
+ * che permette di costruire i comandi che il giocatore vuole eseguire.
+ *
+ * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
+ * @version 0.3
+ * @see Comando, FabbricaDiComandi
+ */
 public class FabbricaDiComandiSemplice implements FabbricaDiComandi {
 	
 	private Scanner scannerDiParole;

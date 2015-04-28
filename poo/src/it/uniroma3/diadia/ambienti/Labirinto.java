@@ -5,8 +5,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 /**
  * Classe che crea e gestisce il Labirinto con le relative stanze
  * 
- * @author Riccardo Linares, con la collaborazione di Mauro Iemboli
+ * @author  Paolo Merialdo, Valter Crescenzi (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
  * @see Stanza
+ * @version 0.3
  */
 public class Labirinto {
 
@@ -109,7 +110,4 @@ public class Labirinto {
 	public Stanza getStanzaCorrente() {
 		return this.stanzaCorrente;
 	}
-
-
-	
 }

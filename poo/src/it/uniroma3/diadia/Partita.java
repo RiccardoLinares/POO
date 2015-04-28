@@ -6,9 +6,9 @@ import it.uniroma3.diadia.giocatore.Giocatore;
 /**
  * Questa classe modella una partita del gioco
  *
- * @author  Paolo Merialdo, Valter Crescenzi (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares  e la collaborazione di Mauro Iemboli)
+ * @author  Paolo Merialdo, Valter Crescenzi (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
  * @see Labirinto, Giocatore
- * @version 0.2
+ * @version 0.3
  */
 
 public class Partita {
@@ -82,7 +82,10 @@ public class Partita {
 		this.giocatore = giocatore;
 	}
 
-
+	/**
+	 * Restituisce true se il giocatore è vivo, false altrimenti
+	 * @return true se il giocatore è vivo
+	 */
 	public boolean giocatoreIsVivo() {
 		boolean verificato = true;
 		if(this.getGiocatore().getCfu() < 0){

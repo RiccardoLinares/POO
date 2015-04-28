@@ -4,12 +4,18 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
 
+/**
+ * Questa classe modella il comando vai
+ * che permette di muoversi all'interno del labirinto.
+ *
+ * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
+ * @version 0.3
+ * @see Comando, Partita
+ */
 public class ComandoVai implements Comando {
 	private String direzione;
 	
-	/**
-	 * esecuzione del comando
-	 */
+	@Override
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
@@ -30,6 +36,7 @@ public class ComandoVai implements Comando {
 		}
 	}
 
+	@Override
 	public void setParametro(String parametro) { 
 		this.direzione = parametro; 
 	}

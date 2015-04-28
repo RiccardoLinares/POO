@@ -7,16 +7,33 @@ import it.uniroma3.diadia.Partita;
  * Un comando consiste al piu' di due parole:
  * il nome del comando ed un parametro
  * su cui si applica il comando.
- * (Ad es. alla riga digitata dall'utente "vai nord"
- *  corrisponde un comando di nome "vai" e parametro "nord").
- *
- * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e la collaborazione di Mauro Iemboli)
- * @version 0.2
+ * 
+ * @author  Paolo Merialdo (da un'idea di Michael Kolling and David J. Barnes, con delle modifiche apportate da Riccardo Linares e Mauro Iemboli)
+ * @version 0.3
  */
 
 public interface Comando{
+	/**
+	 * Il comando da eseguire
+	 * @param partita
+	 */
 	public void esegui(Partita partita);
+	
+	/**
+	 * Il parametro del comando
+	 * @param parametro
+	 */
 	public void setParametro(String parametro);
+	
+	/**
+	 * Restituisce il parametro del comando
+	 * @return parametro
+	 */
 	public String getParametro();
+	
+	/**
+	 * Restituisce il nome del comando
+	 * @return nome del comando
+	 */
 	public String getNome();
 }
