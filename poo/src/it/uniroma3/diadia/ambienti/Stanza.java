@@ -169,33 +169,25 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
-	public boolean removeAttrezzo(String nomeAttrezzo) {
-		boolean verificata = false;
-		if(hasAttrezzo(nomeAttrezzo)){
-			for(int i=0; i<this.numeroAttrezzi; i++){
-				if(this.attrezzi[i].getNome().equals(nomeAttrezzo)){
-					this.attrezzi[i] = null;
-					verificata = true;
-				}
-			}
-			sortAttrezzi();
-		}
-		return verificata;
-	}
-	
-	/**
-	 * Riordina gli attrezzi nella stanza
-	 */
-	public void sortAttrezzi(){
+	public boolean removeAttrezzo(String nomeAttrezzo) {	 
+		Attrezzo attrezzo = null;		 
+		Attrezzo[] nuoviAttrezzi = new Attrezzo[10];
 		int j = 0;
+		
 		for(int i=0; i<this.numeroAttrezzi; i++){
-			Attrezzo attrezzo = attrezzi[i];
-			if(attrezzo != null){
-				attrezzi[j] = attrezzo;
+			if(this.attrezzi[i]!=null && this.attrezzi[i].getNome().equals(nomeAttrezzo))
+				attrezzo = this.attrezzi[i];
+			else {
+				nuoviAttrezzi[j] = this.attrezzi[i];
 				j++;
 			}
 		}
-		this.numeroAttrezzi = j;
+		this.attrezzi = nuoviAttrezzi;
+		this.numeroAttrezzi--;
+		if (attrezzo != null) 
+			return true;
+		else
+			return false;
 	}
 
 

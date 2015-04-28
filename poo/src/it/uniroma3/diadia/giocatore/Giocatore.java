@@ -3,8 +3,8 @@ package it.uniroma3.diadia.giocatore;
 
 /**
  * Classe che gestisce il Giocatore e i suoi cfu
- * @author Riccardo Linares, con la collaborazione di Mauro Iemboli
- * @version 0.2
+ * @author Riccardo Linares, Mauro Iemboli
+ * @version 0.3
  * @see Borsa
  */
 public class Giocatore {

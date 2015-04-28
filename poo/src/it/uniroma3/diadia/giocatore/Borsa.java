@@ -8,8 +8,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * Il peso varia in base al numero di oggetti all'interno della borsa.
  * È possibile aggiungere o rimuove gli oggetti nella borsa.
  * 
- * @author Riccardo Linares, con la collaborazione di Mauro Iemboli
- *
+ * @author Riccardo Linares, Mauro Iemboli
+ * @version 0.3
  */
 public class Borsa {
 
@@ -32,7 +32,7 @@ public class Borsa {
 	 */
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
-		this.attrezzi = new Attrezzo[10]; // speriamo che bastino...
+		this.attrezzi = new Attrezzo[10];
 		this.numeroAttrezzi = 0;
 	}
 
@@ -103,37 +103,25 @@ public class Borsa {
 	/**
 	 * Rimuove un attrezzo presente nella borsa.
 	 * @param nomeAttrezzo il nome dell'attrezzo da rimuovere
-	 * @return l'attrezzo rimosso 
+	 * @return attrezzo, l'attrezzo rimosso 
 	 */
-	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
-		Attrezzo a = null;
-	
-		if(hasAttrezzo(nomeAttrezzo)){
-			for(int i=0; i<this.numeroAttrezzi; i++){
-				if(this.attrezzi[i].getNome().equals(nomeAttrezzo)){
-					a = this.attrezzi[i];
-					this.attrezzi[i] = null;
-				}
+	public Attrezzo removeAttrezzo(String nomeAttrezzo) { 
+		Attrezzo attrezzo = null;		 
+		Attrezzo[] nuoviAttrezzi = new Attrezzo[10];
+		int i = 0;
+		for(int j=0; j<this.numeroAttrezzi; j++){
+			if(this.attrezzi[j]!=null && this.attrezzi[j].getNome().equals(nomeAttrezzo))
+				attrezzo = this.attrezzi[j];
+			else {
+				nuoviAttrezzi[i] = this.attrezzi[j];
+				i++;
 			}
 		}
-		sortAttrezzi();
-		return a;
-	}
-	
-	/**
-	 * Riordina gli attrezzi nella borsa del giocatore.
-	 */
-	public void sortAttrezzi(){
-		int j = 0;
-		for(int i=0; i<this.numeroAttrezzi; i++){
-			Attrezzo attrezzo = attrezzi[i];
-			if(attrezzo != null){
-				attrezzi[j] = attrezzo;
-				j++;
-			}
-		}
-		this.numeroAttrezzi = j;
-	}
+		this.attrezzi = nuoviAttrezzi;
+		this.numeroAttrezzi--;
+		return attrezzo; 
+	} 
+
 	
 	/**
 	 * Restituisce una descrizione letterale della borsa
