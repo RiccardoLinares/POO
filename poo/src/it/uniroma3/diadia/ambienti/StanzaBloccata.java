@@ -1,7 +1,5 @@
 package it.uniroma3.diadia.ambienti;
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
-
 /**
  * Classe StanzaBloccata - una stanza in un gioco di ruolo.
  * È una particolare stanza in cui una o più direzioni sono bloccate.
