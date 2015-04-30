@@ -31,7 +31,7 @@ public class Labirinto {
     	Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1);
     	Attrezzo matita = new Attrezzo("matita", 2);
-    	Attrezzo chiave = new Attrezzo("chiave", 2); //TODO cancellare attrezzo, (serve per provare stanzaBloccata)
+    	Attrezzo chiave = new Attrezzo("chiave", 2); 
     	Attrezzo mattone = new Attrezzo("mattone", 9);
     	
 		/* crea stanze del labirinto */
@@ -43,7 +43,7 @@ public class Labirinto {
 		StanzaBuia aulaVideo = new StanzaBuia("Aula Video", "lanterna");
 		StanzaMagica laboratorioChimica = new StanzaMagica("Laboratorio Chimica");
 	    StanzaBloccata ripostiglio = new StanzaBloccata("Ripostiglio", "chiave","nord");
-	    Stanza secretLab = new Stanza("Laboratorio segreto"); //TODO cancellare dopo
+	    Stanza secretLab = new Stanza("Laboratorio segreto");
 	    
 		/* collega le stanze */
 		atrio.impostaStanzaAdiacente("nord", biblioteca);
@@ -68,9 +68,9 @@ public class Labirinto {
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 		atrio.addAttrezzo(matita);
-		atrio.addAttrezzo(lanterna); //TODO cancellare questo attrezzo dopo aver corretto tutto il resto (serve per provare stanza magica)
-		atrio.addAttrezzo(chiave); //TODO cancellare dopo
-		atrio.addAttrezzo(mattone); //TODO
+		atrio.addAttrezzo(lanterna); 
+		atrio.addAttrezzo(chiave);
+		atrio.addAttrezzo(mattone);
 		
 		// il gioco comincia nell'atrio
         stanzaCorrente = atrio;  

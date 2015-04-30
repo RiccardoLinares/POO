@@ -50,7 +50,7 @@ public class DiaDia {
 
 		Comando comandoDaEseguire; 
 
-		FabbricaDiComandi factory = new FabbricaDiComandiSemplice();
+		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
 
 		comandoDaEseguire = factory.costruisciComando(istruzione); 
 

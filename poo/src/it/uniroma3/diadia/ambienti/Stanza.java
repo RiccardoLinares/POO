@@ -17,8 +17,8 @@ public class Stanza {
 	private static final int NUMERO_MASSIMO_DIREZIONI = 4;
 	private static final int NUMERO_MASSIMO_ATTREZZI = 10;
 	private String nome;
-    protected Attrezzo[] attrezzi; //TODO controlla se lasciare PROTECTED o meno!!!
-    protected int numeroAttrezzi; //TODO controlla 
+    protected Attrezzo[] attrezzi;
+    protected int numeroAttrezzi;
     private Stanza[] stanzeAdiacenti;
     private int numeroStanzeAdiacenti;
 	private String[] direzioni;

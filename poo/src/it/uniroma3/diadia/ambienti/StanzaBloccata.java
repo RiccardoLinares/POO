@@ -27,7 +27,6 @@ public class StanzaBloccata extends Stanza {
 		super(nome);
 		this.attrezzoChiave = attrezzoChiave;
 		this.setDirezioneBloccata(direzioneBloccata);
-		//TODO controllare cosa fare!
 	}
 
 	

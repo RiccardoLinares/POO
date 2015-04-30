@@ -27,7 +27,7 @@ public class ComandoPosa implements Comando{
 
 				if(partita.getLabirinto().getStanzaCorrente().getClass().equals("StanzaMagica")){
 					System.out.println("StanzaMagica");
-				}//TODO
+				}
 				
 				if(partita.getLabirinto().getStanzaCorrente().hasAttrezzo(nomeAttrezzo) &&
 						!partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzo)){

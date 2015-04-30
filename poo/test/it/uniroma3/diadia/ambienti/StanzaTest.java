@@ -31,8 +31,6 @@ public class StanzaTest {
 		atrio.addAttrezzo(h2o);
 		atrio.addAttrezzo(fez);	
 		atrio.removeAttrezzo(fez.toString());
-
-		
 	}
 		
 	@Test
