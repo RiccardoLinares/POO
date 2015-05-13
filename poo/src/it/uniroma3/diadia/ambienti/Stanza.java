@@ -136,14 +136,12 @@ public class Stanza {
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		Attrezzo attrezzoCercato;
-		attrezzoCercato = null;
 		Iterator<Attrezzo> i = this.attrezzi.iterator();
 		while(i.hasNext()) {
 				if (i.next().getNome().equals(nomeAttrezzo))
-					attrezzoCercato = i.next();
+					return i.next();
 		}
-		return attrezzoCercato;	
+		return null;	
 	}
 
 	/**
