@@ -17,7 +17,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @version 0.3
  */
 public class Borsa {
-	private List<Attrezzo> attrezzi;
+	private List<Attrezzo>  attrezzi ;
 	private int pesoMax;
 	public final static int DEFAULT_PESO_MAX = 10;
 
@@ -140,8 +140,24 @@ public class Borsa {
 			s.append("Borsa vuota");
 		return s.toString();
 	}
-	
+
+	//TODO
 	public List<Attrezzo> getContenutoOrdinatoPerPeso(){
-		//Collections.sort(this.attrezzi);		
+		List<Attrezzo> listaOrdinata = null;
+		Iterator<Attrezzo> i = this.attrezzi.iterator();
+		Iterator<Attrezzo> k = this.attrezzi.iterator();
+		if(this.attrezzi != null){
+			while(k.hasNext()){
+				Attrezzo min = k.next();
+				while(i.hasNext()){
+					if(ii.next().getPeso() < min.getPeso()){
+						min = i.next();
+						this.attrezzi.remove(min);
+						listaOrdinata.add(min);
+					}
+				}
+			}
+		}
 	}
+
 }
