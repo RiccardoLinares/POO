@@ -20,7 +20,8 @@ public class ComandoPrendi implements Comando{
 	public void esegui(Partita partita) {
 		if(nomeAttrezzo == null)
 			System.out.println("Cosa vuoi raccogliere?");
-		else { 
+		else {
+			
 			Attrezzo attrezzoDaPrendere = partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 			//controlla se l'attrezzo è presente nella stanza
 			if(partita.getLabirinto().getStanzaCorrente().hasAttrezzo(nomeAttrezzo))	{
