@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 
 
+
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -101,9 +102,9 @@ public class Stanza {
     	String s = new String();
     	s += this.descrizione;
     	s += "\nUscite: ";
-    	for (Entry<String, Stanza> entry : this.stanzeAdiacenti.entrySet()){
-    		if(entry != null)
-    			s += " " + entry.getKey();
+    	for (String stanza : this.stanzeAdiacenti.keySet()){
+    		if(stanza != null)
+    			s += " " + stanza;
     	}
     	s += "\nAttrezzi nella stanza: ";
     	Iterator<Attrezzo> i = this.attrezzi.iterator();

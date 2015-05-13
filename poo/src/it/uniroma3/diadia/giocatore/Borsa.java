@@ -150,14 +150,23 @@ public class Borsa {
 			while(k.hasNext()){
 				Attrezzo min = k.next();
 				while(i.hasNext()){
-					if(ii.next().getPeso() < min.getPeso()){
+					if(i.next().getPeso() < min.getPeso()){
 						min = i.next();
 						this.attrezzi.remove(min);
 						listaOrdinata.add(min);
 					}
+					else if(i.next().getPeso() == min.getPeso()){
+						if(i.next().getNome() > min.getNome()){
+							
+						}
+					}
 				}
 			}
 		}
+		return listaOrdinata;
 	}
 
+	List<Attrezzo> getContenutoOrdinatoPerNome(){
+		
+	}
 }
