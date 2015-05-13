@@ -109,7 +109,6 @@ public class Stanza {
     	s += "\nAttrezzi nella stanza: ";
     	Iterator<Attrezzo> i = this.attrezzi.iterator();
     	while(i.hasNext()){
-    		if(i.next() != null)
     			s += i.next().getNome() + " ";
     	}    	
     	return s;
@@ -124,10 +123,8 @@ public class Stanza {
 		trovato = false;
 		Iterator<Attrezzo> i = this.attrezzi.iterator();
 		while(i.hasNext()) {
-			if(i.next() != null){
 				if (i.next().getNome().equals(nomeAttrezzo))
 					trovato = true;
-			}
 		}
 		return trovato;
 	}
@@ -143,10 +140,8 @@ public class Stanza {
 		attrezzoCercato = null;
 		Iterator<Attrezzo> i = this.attrezzi.iterator();
 		while(i.hasNext()) {
-			if(i.next() != null){
 				if (i.next().getNome().equals(nomeAttrezzo))
 					attrezzoCercato = i.next();
-			}
 		}
 		return attrezzoCercato;	
 	}
@@ -157,15 +152,12 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(String nomeAttrezzo) {	 
-		boolean verificata = false;
-		Iterator<Attrezzo> i = this.attrezzi.iterator();
-		while(i.hasNext()) {
-			if(i.next()!=null && i.next().getNome().equals(nomeAttrezzo)){
-				this.attrezzi.remove(i.next());
-				verificata = true;
+		for(Attrezzo attrezzo : this.attrezzi) {
+			if(attrezzo.getNome().equals(nomeAttrezzo)){
+				return this.attrezzi.remove(attrezzo);
 			}
 		}
-		return verificata;
+		return false;
 	}
 
 
