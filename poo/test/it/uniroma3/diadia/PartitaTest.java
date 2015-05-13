@@ -32,7 +32,7 @@ public class PartitaTest {
 	    labirinto.setStanzaCorrente(atrio);
 	    prova.setGiocatore(playerOne);
 	    prova.setLabirinto(labirinto);
-	    
+	    prova.setFinita();
 }
 
 	
