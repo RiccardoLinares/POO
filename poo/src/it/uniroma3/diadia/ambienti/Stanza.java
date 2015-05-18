@@ -119,14 +119,7 @@ public class Stanza {
 	* @return true se l'attrezzo esiste nella stanza, false altrimenti.
 	*/
 	public boolean hasAttrezzo(String nomeAttrezzo) {
-		boolean trovato;
-		trovato = false;
-		Iterator<Attrezzo> i = this.attrezzi.iterator();
-		while(i.hasNext()) {
-				if (i.next().getNome().equals(nomeAttrezzo))
-					trovato = true;
-		}
-		return trovato;
+		return this.attrezzi.contains(this.getAttrezzo(nomeAttrezzo));
 	}
 
 	/**
@@ -136,7 +129,6 @@ public class Stanza {
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		
 		Attrezzo attrezzo = null;
 		Iterator<Attrezzo> i = this.attrezzi.iterator();
 		while(i.hasNext()) {
@@ -145,7 +137,7 @@ public class Stanza {
 					return attrezzo;
 				}
 		}
-		return attrezzo;	
+		return null;	
 	}
 
 	/**

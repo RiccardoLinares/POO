@@ -25,13 +25,15 @@ public class ComandoPosa implements Comando{
 				partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
 				partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
 
+				/*
+				 * TODO
 				if(partita.getLabirinto().getStanzaCorrente().getClass().equals("StanzaMagica")){
 					System.out.println("StanzaMagica");
-				}
+				}*/
 				
 				if(partita.getLabirinto().getStanzaCorrente().hasAttrezzo(nomeAttrezzo) &&
 						!partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzo)){
-					System.out.println("Attrezzo " + attrezzo.toString() + " posato nella stanza");
+					System.out.println("Attrezzo " + attrezzo.getNome() + " posato nella stanza");
 				}
 				else
 					System.out.println("Errore! Attrezzo " + attrezzo.getNome() + " non posato!");

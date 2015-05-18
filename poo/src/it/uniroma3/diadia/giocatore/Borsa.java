@@ -1,11 +1,17 @@
 package it.uniroma3.diadia.giocatore;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.attrezzi.ComparatorePerPeso;
 
 /**
  * Classe che gestisce la borsa del giocatore.
@@ -16,7 +22,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @author Riccardo Linares, Mauro Iemboli
  * @version 0.3
  */
-public class Borsa {
+public class Borsa{
 	private List<Attrezzo>  attrezzi ;
 	private int pesoMax;
 	public final static int DEFAULT_PESO_MAX = 10;
@@ -41,7 +47,7 @@ public class Borsa {
 	 * @return true se l'attrezzo è stato aggiunto, false se l'attrezzo non è stato aggiunto
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		if(this.getPeso() + attrezzo.getPeso() < this.getPesoMax()) {
+		if((this.getPeso() + attrezzo.getPeso()) < this.getPesoMax()) {
 			return this.attrezzi.add(attrezzo);
 		}else {
 			return false;
@@ -103,7 +109,7 @@ public class Borsa {
 	 * @return true se l'attrezzo è presente, false se l'attrezzo non è nella borsa
 	 */
 	public boolean hasAttrezzo(String nomeAttrezzo) {
-		return this.getAttrezzo(nomeAttrezzo)!=null;
+		return this.attrezzi.contains(this.getAttrezzo(nomeAttrezzo));
 	}
 
 	/**
@@ -129,44 +135,76 @@ public class Borsa {
 	 */
 	public String toString() {
 		StringBuilder s = new StringBuilder();
-		Iterator<Attrezzo> iteratore =this.attrezzi.iterator();
+		Iterator<Attrezzo> iteratore = this.attrezzi.iterator();
 		Attrezzo a = null;
 		if (!this.isEmpty()) {
-			while (iteratore.hasNext())
+			s.append("Contenuto borsa: ");
+			while (iteratore.hasNext()){
 				a = iteratore.next();
-			s.append("Contenuto borsa: " + a.getNome());
+				s.append(a.getNome());
+			}
 		}
 		else
 			s.append("Borsa vuota");
 		return s.toString();
 	}
 
-	//TODO
-	public List<Attrezzo> getContenutoOrdinatoPerPeso(){
-		List<Attrezzo> listaOrdinata = null;
-		Iterator<Attrezzo> i = this.attrezzi.iterator();
-		Iterator<Attrezzo> k = this.attrezzi.iterator();
-		if(this.attrezzi != null){
-			while(k.hasNext()){
-				Attrezzo min = k.next();
-				while(i.hasNext()){
-					if(i.next().getPeso() < min.getPeso()){
-						min = i.next();
-						this.attrezzi.remove(min);
-						listaOrdinata.add(min);
-					}
-					else if(i.next().getPeso() == min.getPeso()){
-						if(i.next().getNome() > min.getNome()){
-							
-						}
-					}
-				}
+	/**
+	 * Restituisce una lista che ha gli attrezzi ordinati per peso
+	 * @return attrezziOrdinatiPerPeso
+	 */
+	public List<Attrezzo> getContenutoOrdinatoPerPeso() {
+		List<Attrezzo> attrezziPerPeso = new ArrayList<>();
+		attrezziPerPeso.addAll(this.attrezzi);
+		ComparatorePerPeso comp = new ComparatorePerPeso();
+		Collections.sort(attrezziPerPeso, comp);
+		return attrezziPerPeso;
+	}
+	
+	/**
+	 * Restituisce una lista che ha gli attrezzi ordinati per nome
+	 * @return attrezziOrdinatiPerNome
+	 */
+	public List<Attrezzo> getContenutoOrdinatoPerNome() {
+		List<Attrezzo> attrezziPerNome = new ArrayList<>();
+		attrezziPerNome.addAll(this.attrezzi);
+		Collections.sort(attrezziPerNome);
+		return attrezziPerNome;
+	}
+	
+	/**
+	 * Restituisce una mappa che ha gli attrezzi
+	 * raggruppati per peso
+	 * @return contenutoRaggruppatoPerPeso
+	 */
+	public Map<Integer, Set<Attrezzo>> getContenutoRaggruppatoPerPeso() {
+		
+		Set<Attrezzo> tmp;
+		Map<Integer, Set<Attrezzo>> ContenutoRaggruppatoPerPeso = new HashMap<Integer, Set<Attrezzo>>();
+		for(Attrezzo attrezzo: this.attrezzi) {
+			if(ContenutoRaggruppatoPerPeso.containsKey(attrezzo.getPeso())) {
+				tmp = ContenutoRaggruppatoPerPeso.get(attrezzo.getPeso());
+				tmp.add(attrezzo);
+			}
+			else {
+				tmp = new HashSet<>();
+				tmp.add(attrezzo);
+				ContenutoRaggruppatoPerPeso.put(attrezzo.getPeso(), tmp);
 			}
 		}
-		return listaOrdinata;
+		return ContenutoRaggruppatoPerPeso;
+	}
+	
+	public String ContenutoOrdinatoPerNomeToString() {
+		return this.getContenutoOrdinatoPerNome().toString();
+	}
+	
+	public String ContenutoOrdinatoPerPesoToString() {
+		return this.getContenutoOrdinatoPerPeso().toString();
+	}
+	
+	public String ContenutoRaggruppatoPerPesoToString() {
+		return this.getContenutoRaggruppatoPerPeso().toString();
 	}
 
-	List<Attrezzo> getContenutoOrdinatoPerNome(){
-		
-	}
 }
