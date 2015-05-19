@@ -30,7 +30,7 @@ public class StanzaTest {
 		aulaN11.addAttrezzo(screwdriver);
 		atrio.addAttrezzo(h2o);
 		atrio.addAttrezzo(fez);	
-		atrio.removeAttrezzo(fez.toString());
+		atrio.removeAttrezzo("Fez");
 	}
 		
 	@Test

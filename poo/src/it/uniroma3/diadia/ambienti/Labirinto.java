@@ -68,7 +68,6 @@ public class Labirinto {
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 		atrio.addAttrezzo(matita);
-		atrio.addAttrezzo(lanterna); 
 		atrio.addAttrezzo(chiave);
 		atrio.addAttrezzo(mattone);
 		

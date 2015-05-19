@@ -1,6 +1,9 @@
 package it.uniroma3.diadia.giocatore;
 
 import static org.junit.Assert.*;
+
+import java.util.*;
+
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
@@ -13,19 +16,23 @@ import org.junit.Test;
  *
  */
 public class BorsaTest {
+	
 	private Borsa borsaVuota;
 	private Borsa borsaPiena;
 	private Borsa borsaDaSvuotare;
 	private Attrezzo spazzolino;
 	private Attrezzo telefono;
 	private Attrezzo cianfrusaglia;
+	private Attrezzo spada;
 	
 	@Before
 	public void setUp() throws Exception {
 		borsaPiena = new Borsa();
 		spazzolino = new Attrezzo("Spazzolino", 1);
 		telefono = new Attrezzo("Telefono", 2);
+		spada = new Attrezzo("Spada", 2);
 		cianfrusaglia = new Attrezzo("Cianfrusaglia", 7);
+		borsaPiena.addAttrezzo(spada);
 		borsaPiena.addAttrezzo(spazzolino);
 		borsaPiena.addAttrezzo(telefono);
 		borsaVuota = new Borsa();
@@ -51,7 +58,7 @@ public class BorsaTest {
 
 	@Test
 	public void testGetPeso() {
-		assertEquals(3, borsaPiena.getPeso());
+		assertEquals(5, borsaPiena.getPeso());
 	}
 
 	@Test
@@ -68,5 +75,35 @@ public class BorsaTest {
 	public void testRemoveAttrezzo() {
 		assertTrue(borsaDaSvuotare.isEmpty());
 	}
-
+	
+	@Test
+	public void testGetContenutoOrdinatoPerPeso() {
+		List<Attrezzo> aspettativa = new ArrayList<Attrezzo>();
+		aspettativa.add(spazzolino);
+		aspettativa.add(spada);
+		aspettativa.add(telefono);
+		assertEquals(aspettativa, borsaPiena.getContenutoOrdinatoPerPeso());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerNome() {
+		List<Attrezzo> aspettativa = new ArrayList<Attrezzo>();
+		aspettativa.add(spada);
+		aspettativa.add(spazzolino);
+		aspettativa.add(telefono);
+		assertEquals(aspettativa, borsaPiena.getContenutoOrdinatoPerNome());
+	}
+	
+	@Test
+	public void testGetContenutoRaggruppatoPerPeso() {
+		Set<Attrezzo> tmp = new HashSet<Attrezzo>();
+		Set<Attrezzo> tmp1 = new HashSet<Attrezzo>();
+		tmp1.add(spazzolino);
+		tmp.add(spada);
+		tmp.add(telefono);
+		Map<Integer, Set<Attrezzo>> mappa = new HashMap<Integer, Set<Attrezzo>>();
+		mappa.put(2, tmp);
+		mappa.put(1, tmp1);
+		assertEquals(mappa, borsaPiena.getContenutoRaggruppatoPerPeso());		
+	}
 }

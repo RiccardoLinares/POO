@@ -29,7 +29,6 @@ public class StanzaBloccata extends Stanza {
 		this.setDirezioneBloccata(direzioneBloccata);
 	}
 
-	
 	@Override
 	public Stanza getStanzaAdiacente (String direzione) {
 		if ((direzione.equals(direzioneBloccata)) && !(this.hasAttrezzo(attrezzoChiave))) { 

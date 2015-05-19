@@ -4,7 +4,6 @@ package it.uniroma3.diadia.ambienti;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -26,8 +25,6 @@ public class Stanza {
 	private String descrizione;
 	protected Map<String, Attrezzo> attrezzi;
 	private Map<String,Stanza> stanzeAdiacenti;
-	//TODO per attrezzi è meglio usare SET o LIST??? Per SET abbiamo creato anche un override in attrezzo per equals e hashcode
-	//si può anche usare un TreeSet per ordinare direttamente la lista...
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -83,7 +80,13 @@ public class Stanza {
 		return this.attrezzi.values();
 	}
 
-	//TODO Commenti
+	/**
+	 * Aggiunge un attrezzo alla stanza.
+	 * 
+	 * @param attrezzo
+	 * 		l'attrezzo da aggiungere
+	 * @return false se l'attrezzo non viene aggiunto, true altrimenti.
+	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		final String ATTREZZO_GIA_PRESENTE = "L'attrezzo è già presente nella stanza";
 		if(this.attrezzi.containsKey(attrezzo.getNome())) {
@@ -106,14 +109,16 @@ public class Stanza {
 		String s = new String();
 		s += this.getNome();
 		s += "\nUscite:";
-		Set <String> direzioni = this.stanzeAdiacenti.keySet();
-		for (String direzione : direzioni)
-			if (direzione!=null)
-				s += " " + direzione;
-		s += "\nAttrezzi nella stanza: ";
-		for (Attrezzo attrezzo: this.attrezzi.values()) {
-			s += attrezzo.toString()+" ";
+		Iterator<String> iteratore = this.stanzeAdiacenti.keySet().iterator();
+		while(iteratore.hasNext()){		
+				s += " " + iteratore.next();
 		}
+		s += "\nAttrezzi nella stanza: ";
+		Iterator<Attrezzo> iteratore2 = this.attrezzi.values().iterator();
+		while(iteratore2.hasNext()){
+			s += iteratore2.next().toString()+" ";
+		}
+
 		return s;
 	}
 
@@ -143,7 +148,6 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
-	//TODO sono state apportate modifiche...
 	public boolean removeAttrezzo(String nomeAttrezzo) {
 		this.attrezzi.remove(nomeAttrezzo);
 		if(!this.attrezzi.containsKey(nomeAttrezzo)){
@@ -193,7 +197,4 @@ public class Stanza {
 	public void setStanzeAdiacenti(Map<String, Stanza> stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
 	}
-	
-
-
 }
