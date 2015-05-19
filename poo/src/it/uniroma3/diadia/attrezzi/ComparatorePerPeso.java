@@ -6,7 +6,10 @@ public class ComparatorePerPeso implements Comparator<Attrezzo>{
 
 	@Override
 	public int compare(Attrezzo o1, Attrezzo o2) {
-		return o1.getPeso() - o2.getPeso();
+		if(o1.getPeso() != o2.getPeso()){
+			return o1.getPeso() - o2.getPeso();
+		}
+		else return o1.compareTo(o2);
 	}
 
 }

@@ -32,7 +32,6 @@ public class BorsaTest {
 		borsaDaSvuotare = new Borsa();
 		borsaDaSvuotare.addAttrezzo(cianfrusaglia);
 		borsaDaSvuotare.removeAttrezzo("Cianfrusaglia");
-		
 	}
 
 	@Test

@@ -28,7 +28,7 @@ public class Labirinto {
 	private void init() {
 
 		/* crea gli attrezzi */
-    	Attrezzo lanterna = new Attrezzo("lanterna",3);
+    	Attrezzo lanterna = new Attrezzo("lanterna",2);
 		Attrezzo osso = new Attrezzo("osso",1);
     	Attrezzo matita = new Attrezzo("matita", 2);
     	Attrezzo chiave = new Attrezzo("chiave", 2); 

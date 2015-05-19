@@ -141,7 +141,7 @@ public class Borsa{
 		StringBuilder s = new StringBuilder();
 		if(!this.isEmpty()) {
 			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for(Attrezzo attrezzo: this.attrezzi.values())
+			for(Attrezzo attrezzo: this.getContenutoOrdinatoPerPeso())
 				s.append(attrezzo.toString()+" ");
 		}
 		else
@@ -194,18 +194,6 @@ public class Borsa{
 			}
 		}
 		return ContenutoRaggruppatoPerPeso;
-	}
-	
-	public String ContenutoOrdinatoPerNomeToString() {
-		return this.getContenutoOrdinatoPerNome().toString();
-	}
-	
-	public String ContenutoOrdinatoPerPesoToString() {
-		return this.getContenutoOrdinatoPerPeso().toString();
-	}
-	
-	public String ContenutoRaggruppatoPerPesoToString() {
-		return this.getContenutoRaggruppatoPerPeso().toString();
 	}
 
 }
