@@ -190,7 +190,7 @@ public class Stanza {
 	}
 
 	/**
-	 * Modifica l'array delle stanze adiacenti
+	 * Modifica le stanze adiacenti
 	 * @param stanzeAdiacenti
 	 * 		le stanze adiacenti.
 	 */
