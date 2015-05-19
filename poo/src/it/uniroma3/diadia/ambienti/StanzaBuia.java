@@ -30,7 +30,8 @@ public class StanzaBuia extends Stanza {
 			return"Qui c'è buio pesto";
 		}
 		else{
-			return"la stanza e' illuminata da " + this.attrezzoIllumina;
+			
+			return "La stanza e' ora illuminata da " + this.attrezzoIllumina + "\n" + super.getDescrizione();
 		}
 	}
 }

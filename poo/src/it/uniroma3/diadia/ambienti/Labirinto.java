@@ -65,7 +65,7 @@ public class Labirinto {
 		ripostiglio.impostaStanzaAdiacente("nord", secretLab);
 		
         /* pone gli attrezzi nelle stanze */
-		aulaN10.addAttrezzo(lanterna);
+		atrio.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 		atrio.addAttrezzo(matita);
 		atrio.addAttrezzo(chiave);
