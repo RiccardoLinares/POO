@@ -24,7 +24,6 @@ public class ComandoVaiTest {
 		this.n10 = new Stanza("n10");
 		atrio.impostaStanzaAdiacente("nord", n10);
 		partita.setLabirinto(labirinto);
-		
 	}
 	
 	@Test
