@@ -2,14 +2,12 @@ package it.uniroma3.diadia.ambienti;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
-
-
+import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -26,9 +24,10 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Stanza {
 
 	private String descrizione;
-	protected List<Attrezzo> attrezzi;
+	protected Map<String, Attrezzo> attrezzi;
 	private Map<String,Stanza> stanzeAdiacenti;
-
+	//TODO per attrezzi è meglio usare SET o LIST??? Per SET abbiamo creato anche un override in attrezzo per equals e hashcode
+	//si può anche usare un TreeSet per ordinare direttamente la lista...
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -37,7 +36,7 @@ public class Stanza {
 	public Stanza(String descrizione){
 		this.descrizione = descrizione;
 		this.stanzeAdiacenti = new HashMap<>();
-		this.attrezzi = new ArrayList<>();
+		this.attrezzi = new HashMap<String, Attrezzo>();
 	}
 
 	/**
@@ -77,67 +76,66 @@ public class Stanza {
 	/**
 	 * Restituisce la collezione di attrezzi presenti nella stanza.
 	 * @return 
+	 * @return 
 	 * @return la collezione di attrezzi nella stanza.
 	 */
-	public List<Attrezzo> getAttrezzi() {
-		return this.attrezzi;
+	public Collection<Attrezzo> getAttrezzi() {
+		return this.attrezzi.values();
 	}
 
-	/**
-	 * Mette un attrezzo nella stanza.
-	 * @param attrezzo l'attrezzo da mettere nella stanza.
-	 * @return 
-	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
-	 */
+	//TODO Commenti
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		return attrezzi.add(attrezzo);
-    }
-
-   /**
-	* Restituisce una rappresentazione stringa di questa stanza,
-	* stampadone la descrizione, le uscite e gli eventuali attrezzi contenuti
-	* @return la rappresentazione stringa
-	*/   
-    public String toString(){
-    	String s = new String();
-    	s += this.descrizione;
-    	s += "\nUscite: ";
-    	for (String stanza : this.stanzeAdiacenti.keySet()){
-    		if(stanza != null)
-    			s += " " + stanza;
-    	}
-    	s += "\nAttrezzi nella stanza: ";
-    	Iterator<Attrezzo> i = this.attrezzi.iterator();
-    	while(i.hasNext()){
-    			s += i.next().getNome() + " ";
-    	}    	
-    	return s;
-    }
-
-    /**
-	* Controlla se un attrezzo esiste nella stanza (uguaglianza sul nome).
-	* @return true se l'attrezzo esiste nella stanza, false altrimenti.
-	*/
-	public boolean hasAttrezzo(String nomeAttrezzo) {
-		return this.attrezzi.contains(this.getAttrezzo(nomeAttrezzo));
+		final String ATTREZZO_GIA_PRESENTE = "L'attrezzo è già presente nella stanza";
+		if(this.attrezzi.containsKey(attrezzo.getNome())) {
+			System.out.println(ATTREZZO_GIA_PRESENTE);
+			return false;
+		}
+		else {
+			this.attrezzi.put(attrezzo.getNome(), attrezzo);
+			return true;
+		}
 	}
 
 	/**
-     * Restituisce l'attrezzo nomeAttrezzo se presente nella stanza.
-	 * @param nomeAttrezzo
-	 * @return l'attrezzo presente nella stanza.
-     * 		   null se l'attrezzo non e' presente.
+	 * Restituisce una rappresentazione stringa di questa stanza,
+	 * stampadone la descrizione, le uscite e gli eventuali attrezzi contenuti
+	 * @return stringa la descrizione su stringa
+	 */
+	@Override
+	public String toString() {
+		String s = new String();
+		s += this.getNome();
+		s += "\nUscite:";
+		Set <String> direzioni = this.stanzeAdiacenti.keySet();
+		for (String direzione : direzioni)
+			if (direzione!=null)
+				s += " " + direzione;
+		s += "\nAttrezzi nella stanza: ";
+		for (Attrezzo attrezzo: this.attrezzi.values()) {
+			s += attrezzo.toString()+" ";
+		}
+		return s;
+	}
+
+	/**
+	 * Controlla se un attrezzo esiste nella stanza (uguaglianza sul nome).
+	 * 
+	 * @param nomeAttrezzo attrezzo da verificare
+	 * @return true se l'attrezzo esiste nella stanza, false altrimenti.
+	 */
+	public boolean hasAttrezzo(String nomeAttrezzo) {
+		return this.attrezzi.containsKey(nomeAttrezzo);
+	}
+
+	
+	/**
+	 * Restituisce l'attrezzo nomeAttrezzo se presente nella stanza.
+	 * 
+	 * @param nomeAttrezzo attrezzo da ottenere
+	 * @return l'attrezzo presente nella stanza, null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		Attrezzo attrezzo = null;
-		Iterator<Attrezzo> i = this.attrezzi.iterator();
-		while(i.hasNext()) {
-			attrezzo = i.next();
-				if (attrezzo.getNome().equals(nomeAttrezzo)){
-					return attrezzo;
-				}
-		}
-		return null;	
+		return this.attrezzi.get(nomeAttrezzo);
 	}
 
 	/**
@@ -145,11 +143,11 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
-	public boolean removeAttrezzo(String nomeAttrezzo) {	 
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)){
-				return this.attrezzi.remove(attrezzo);
-			}
+	//TODO sono state apportate modifiche...
+	public boolean removeAttrezzo(String nomeAttrezzo) {
+		this.attrezzi.remove(nomeAttrezzo);
+		if(!this.attrezzi.containsKey(nomeAttrezzo)){
+			return true;
 		}
 		return false;
 	}
@@ -195,5 +193,7 @@ public class Stanza {
 	public void setStanzeAdiacenti(Map<String, Stanza> stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
 	}
+	
+
 
 }

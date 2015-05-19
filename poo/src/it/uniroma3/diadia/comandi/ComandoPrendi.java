@@ -15,30 +15,24 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class ComandoPrendi implements Comando{
 
 	private String nomeAttrezzo;
-	
+
 	@Override
 	public void esegui(Partita partita) {
-		if(nomeAttrezzo != null){
+		if(nomeAttrezzo == null)
+			System.out.println("Cosa vuoi raccogliere?");
+		else { 
+			Attrezzo attrezzoDaPrendere = partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 			if(partita.getLabirinto().getStanzaCorrente().hasAttrezzo(nomeAttrezzo)){
-
-				Attrezzo attrezzo = partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-
-				partita.getLabirinto().getStanzaCorrente().removeAttrezzo(nomeAttrezzo);
-				partita.getGiocatore().getBorsa().addAttrezzo(attrezzo);
-				
-				if(!partita.getLabirinto().getStanzaCorrente().hasAttrezzo(nomeAttrezzo) &&
-						partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzo)){
-					System.out.println("Attrezzo " + attrezzo.getNome() + " preso");
+				if (partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPrendere)){
+					partita.getLabirinto().getStanzaCorrente().removeAttrezzo(nomeAttrezzo);
+					System.out.println("Hai raccolto l'oggetto "+ nomeAttrezzo +"");
 				}
-				else{
-					System.out.println("Errore! Attrezzo " + attrezzo.getNome() + " non preso!");
-				}
-			}
-			else
-				System.out.println("Attrezzo non trovato!");
+				else 
+					System.out.println("Non puoi raccogliere l'oggetto!");
+
+			} else 
+				System.out.println("L'oggetto che vuoi raccogliere non è in questa stanza!");
 		}
-		else
-			System.out.println("Quale attrezzo vuoi prendere?");
 	}
 
 	@Override
