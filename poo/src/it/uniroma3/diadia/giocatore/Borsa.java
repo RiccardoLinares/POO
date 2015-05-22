@@ -154,7 +154,7 @@ public class Borsa{
 
 	/**
 	 * Restituisce una lista che ha gli attrezzi ordinati per peso
-	 * @return attrezziOrdinatiPerPeso
+	 * @return attrezziPerPeso
 	 */
 	public List<Attrezzo> getContenutoOrdinatoPerPeso() {
 		List<Attrezzo> attrezziPerPeso = new ArrayList<>();
