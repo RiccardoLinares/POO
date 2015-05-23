@@ -7,36 +7,56 @@
 package it.uniroma3.diadia.personaggi;
 
 import it.uniroma3.diadia.*;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * @author Mauro
  *
  */
 public class Cane extends AbstractPersonaggio{
-	private String attrezzoDaMangiare;
+	private Attrezzo attrezzoDaRegalare;
+	private Attrezzo attrezzoDato;
 	
 	/**
 	 * 
 	 * @param nome
 	 * @param presentazione
-	 * @param attrezzoDaMangiare 
 	 */
-	public Cane(String nome, String presentazione, String AttrezzoDaMangiare, String attrezzoDaMangiare) {
+	public Cane(String nome, String presentazione, Attrezzo attrezzoDaRegalare, Attrezzo attrezzoDato) {
 		super(nome, presentazione);
-		this.attrezzoDaMangiare = attrezzoDaMangiare;
-	}
+		this.attrezzoDaRegalare = attrezzoDaRegalare;
+		this.attrezzoDato = attrezzoDato;
+		}
 	
 	public String agisci(Partita partita) {
 		String messaggio;
-		if(!partita.getLabirinto().getStanzaCorrente().hasAttrezzo(attrezzoDaMangiare)) {
-			messaggio = "Il cane è affamato e ti ha morso!!";
-			partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
-			if(partita.giocatoreIsVivo()){
-				System.out.println("Hai " + partita.getGiocatore().getCfu() + " cfu");
+		messaggio = "Il cane è affamato e ti ha morso!!";
+		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-2);
+		if(partita.giocatoreIsVivo()){
+			System.out.println("Hai " + partita.getGiocatore().getCfu() + " cfu");
+		}
+		return messaggio;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		String messaggio;
+		if(attrezzo!=null){
+			if(attrezzoDaRegalare.equals(attrezzo)){
+				messaggio = "Sembra che" + attrezzo.getNome() + "piaccia davvero tanto al cane!";
+				partita.getGiocatore().getBorsa().removeAttrezzo(attrezzoDaRegalare.getNome());
+				partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzoDato);
+				System.out.println("Il cane ha lasciato cadere a terra" +attrezzoDato.getNome());
+			}else{
+				partita.getGiocatore().getBorsa().removeAttrezzo(attrezzo.getNome());
+				messaggio = "Il cane non sembra apprezzare" + attrezzo.getNome() +
+						"Prova con qualcos'altro!";
+				partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
 			}
-        }else{
-        	messaggio = "Il cane sta mangiando" +this.attrezzoDaMangiare +"non sembra essere pericoloso.";
-        }
+		}
+		else{
+			messaggio = "Non hai nulla da regalare!";
+		}
 		return messaggio;
 	}
 

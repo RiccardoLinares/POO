@@ -16,7 +16,7 @@ public class Mago extends AbstractPersonaggio {
 	 * Costruttore della classe Mago
 	 */
     public Mago(String nome, String presentazione, Attrezzo attrezzo){
-    	super(nome, presentazione); //TODO perchè super?
+    	super(nome, presentazione);
     	this.attrezzo = attrezzo;
     }
 
@@ -30,6 +30,21 @@ public class Mago extends AbstractPersonaggio {
 		}else {
 			messaggio = MESSAGGIO_SCUSE;
 		}
+		return messaggio;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		String messaggio;
+		int pesoDimezzato = attrezzo.getPeso()/2;
+		if(attrezzo!=null){
+			attrezzo = new Attrezzo(attrezzo.getNome(), pesoDimezzato);
+			partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
+			messaggio = "Per la barba di Merlino. sei davvero gentile per essere un sempliciotto!"+
+		"Grazie, ma non ne ho bisogno! SIM SALA BIM!";	
+		}else//Perchè Dead Code?
+			messaggio = "Non hai nulla da regalare!";
+		
 		return messaggio;
 	}
     

@@ -1,13 +1,10 @@
 package it.uniroma3.diadia.ambienti;
 
-import it.uniroma3.diadia.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
@@ -22,23 +19,13 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
  * @version 0.3
  */
 
-public class Stanza {
+public class Stanza implements Comparable<Stanza>{
 
 	private String descrizione;
 	protected Map<String, Attrezzo> attrezzi;
 	private Map<String,Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
 	
-	//nuovo metodo
-	public void setPersonaggio(AbstractPersonaggio personaggio){
-		this.personaggio = personaggio;
-	}
-	
-	//nuovo metodo getPersonaggio
-	public AbstractPersonaggio getPersonaggio() {
-		return this.personaggio;
-	}
-
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
 	 * @param descrizione il nome della stanza
@@ -209,5 +196,32 @@ public class Stanza {
 	 */
 	public void setStanzeAdiacenti(Map<String, Stanza> stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
+	}
+	
+	/**
+	 * Metodo set
+	 * Aggiunge il personaggio alla stanza
+	 * @param personaggio
+	 */
+	public void setPersonaggio(AbstractPersonaggio personaggio){
+		this.personaggio = personaggio;
+	}
+    
+	/**
+	 * 
+	 * @return personaggio
+	 */
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
+	}
+
+	@Override
+	public int compareTo(Stanza o) {
+		if(this.getAttrezzi().size() != o.getAttrezzi().size()) {
+			return this.getAttrezzi().size() - o.getAttrezzi().size();
+		} else {
+			return this.getNome().compareTo(o.getNome());
+		}
+	
 	}
 }
