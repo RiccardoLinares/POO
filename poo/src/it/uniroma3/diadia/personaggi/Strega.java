@@ -55,15 +55,8 @@ public class Strega extends AbstractPersonaggio {
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
-		String messaggio;
-		if(attrezzo!=null){
-		messaggio = "Ma che gentile, grazie! AHAHAHAHAHAHAAHAHAH!";
-		partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
 		partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzo.getNome());
-		}else{
-			messaggio = "Non hai nulla da regalare!";
-		}
-		return messaggio;
+		return  "Ma che gentile, grazie! AHAHAHAHAHAHAAHAHAH!";
 	}
 
 }

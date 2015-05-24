@@ -5,7 +5,7 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 
 public class ComandoSaluta implements Comando {
-	private static final String MESSAGGIO_A_CHI = "Chi dovrei salutare???...";
+	private static final String MESSAGGIO_A_CHI = "Non c'è nessuno in questa stanza";
 	
 	@Override
 	public void esegui(Partita partita) {

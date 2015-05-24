@@ -35,17 +35,12 @@ public class Mago extends AbstractPersonaggio {
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
-		String messaggio;
 		int pesoDimezzato = attrezzo.getPeso()/2;
-		if(attrezzo!=null){
 			attrezzo = new Attrezzo(attrezzo.getNome(), pesoDimezzato);
 			partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
-			messaggio = "Per la barba di Merlino. sei davvero gentile per essere un sempliciotto!"+
+			return "Per la barba di Merlino. sei davvero gentile per essere un sempliciotto!"+
 		"Grazie, ma non ne ho bisogno! SIM SALA BIM!";	
-		}else//Perchè Dead Code?
-			messaggio = "Non hai nulla da regalare!";
-		
-		return messaggio;
+	
 	}
     
 }
